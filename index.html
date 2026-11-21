@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAUZA KAIZAKU SETIAWAN — PORTFOLIO V0.7</title>
+  <meta
+    name="description"
+    content="Portfolio of Fauza Kaizaku Setiawan — UI/UX Designer, Web Developer, and Informatics Engineering Student."
+  />
+
+  <!-- Dynamic KAI. SVG Favicon -->
+  <link
+    id="dynamicFavicon"
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121212'/%3E%3Ctext x='11' y='46' font-family='Arial Black, sans-serif' font-weight='900' font-size='36' fill='%23f4f4f2'%3EK%3C/text%3E%3Ccircle cx='48' cy='42' r='7' fill='%239b1c24'/%3E%3C/svg%3E"
+  />
+
+  <!-- Typography: Unbounded + Inter + Press Start 2P -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Unbounded:wght@500;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- =========================================================
+       COIN-OP ARCADE CRT BOOT LOADER
+       ========================================================= -->
+  <div class="intro-curtain" id="introCurtain" aria-hidden="true">
+    <div class="intro-crt-scanlines"></div>
+    <div class="intro-crt-beam" id="introCrtBeam"></div>
+
+    <div class="intro-top-meta">
+      <span class="intro-tag">KAI-VISION // BIOS REV 0.7</span>
+      <span class="intro-status" id="introStatus">INSERTING TOKEN...</span>
+    </div>
+
+    <div class="intro-arcade-center">
+      <div class="intro-coin-rig">
+        <div class="intro-coin" id="introCoin">
+          <span>★</span>
+        </div>
+        <div class="intro-coin-slot" id="introCoinSlot">
+          <span class="slot-slit"></span>
+          <span class="slot-label">25¢ // FREE PLAY</span>
+        </div>
+      </div>
+
+      <div class="intro-brand-block">
+        <span class="intro-mark" id="introMark">KAI.</span>
+        <div class="intro-boot-log" id="introBootLog">
+          <p class="boot-line" data-step="0">ROM CHECK ............ OK</p>
+          <p class="boot-line" data-step="1">3D MONOLITH ENGINE ... OK</p>
+          <p class="boot-line" data-step="2">ALLEY RAIN &amp; SFX ..... OK</p>
+          <p class="boot-line" data-step="3">CREDIT 01 // READY TO START</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro-bottom-bar">
+      <div class="intro-progress-meta">
+        <span class="intro-label">PRESS START — INITIALIZING WORKSPACE</span>
+        <span class="intro-counter" id="introCounter">00%</span>
+      </div>
+      <div class="intro-bar-track">
+        <div class="intro-bar-fill" id="introBarFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SEAMLESS TOP NAVBAR (CAT TOGGLE + SFX + LANG + THEME)
+       ========================================================= -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand-mark js-scroll">KAI.</a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#about" class="js-scroll" data-i18n="nav_about">ABOUT</a>
+        <a href="#education" class="js-scroll" data-i18n="nav_education">EDUCATION</a>
+        <a href="#projects" class="js-scroll" data-i18n="nav_projects">PROJECTS</a>
+        <a href="#lounge" class="js-scroll nav-link--lounge" data-i18n="nav_lounge">ARCADE</a>
+        <a href="#credentials" class="js-scroll" data-i18n="nav_credentials">CREDENTIALS</a>
+        <a href="#contact" class="js-scroll" data-i18n="nav_contact">CONTACT</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button
+          type="button"
+          class="nav-icon-pill"
+          id="navCatBtn"
+          aria-pressed="true"
+          aria-label="Toggle roaming alley cat"
+          data-magnetic
+          data-tooltip="ALLEY CAT [C]"
+        >
+          <span class="cat-dot" aria-hidden="true"></span>
+          <span>CAT</span>
+        </button>
+
+        <button
+          type="button"
+          class="nav-sfx-btn"
+          id="navSfxBtn"
+          aria-pressed="false"
+          aria-label="Toggle sound effects"
+          data-magnetic
+          data-tooltip="SFX [M]"
+        >
+          <span class="sfx-dot" aria-hidden="true"></span>
+          <span id="navSfxLabel">SFX</span>
+        </button>
+
+        <div class="lang-switch" role="group" aria-label="Language switcher" data-tooltip="LANG [L]">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="id">ID</button>
+        </div>
+
+        <button
+          type="button"
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Invert theme polarity"
+          data-magnetic
+          data-tooltip="INVERT [T]"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation" aria-hidden="true">
+      <div class="container mobile-drawer-inner">
+        <a href="#about" class="js-scroll mobile-link" data-i18n="nav_about">ABOUT</a>
+        <a href="#education" class="js-scroll mobile-link" data-i18n="nav_education">EDUCATION</a>
+        <a href="#projects" class="js-scroll mobile-link" data-i18n="nav_projects">PROJECTS</a>
+        <a href="#lounge" class="js-scroll mobile-link" data-i18n="nav_lounge">ARCADE</a>
+        <a href="#credentials" class="js-scroll mobile-link" data-i18n="nav_credentials">CREDENTIALS</a>
+        <a href="#contact" class="js-scroll mobile-link" data-i18n="nav_contact">CONTACT</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- =========================================================
+         HERO SECTION (CRISP WIDE DISPLAY TYPE + RIGHT MONOLITH CONSOLE)
+         ========================================================= -->
+    <section class="hero section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <p class="eyebrow hero-reveal" data-i18n="hero_role">UI/UX DESIGNER &amp; PRODUCT IDEATOR</p>
+
+            <div class="hero-title-3d-stage hero-reveal" id="heroTitle3d">
+              <h1 class="hero-title hero-title--3d" data-text="FAUZA KAIZAKU SETIAWAN">
+                <span class="ht-line">FAUZA</span>
+                <span class="ht-line">KAIZAKU</span>
+                <span class="ht-line">SETIAWAN</span>
+              </h1>
+            </div>
+
+            <p class="hero-sub hero-reveal" data-i18n="hero_sub">
+              INFORMATICS ENGINEERING STUDENT. STRUCTURING IDEAS INTO CLEAR INTERFACES AND USABLE DIGITAL PRODUCTS.
+            </p>
+
+            <div class="hero-actions hero-reveal">
+              <a href="#projects" class="btn btn-dark js-scroll" data-magnetic data-i18n="hero_cta_projects">
+                VIEW PROJECTS
+              </a>
+              <a href="#lounge" class="btn btn-accent js-scroll" data-magnetic data-i18n="hero_cta_arcade">
+                ENTER ARCADE
+              </a>
+              <a href="#contact" class="btn btn-light js-scroll" data-magnetic data-i18n="hero_cta_contact">
+                CONTACT
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: UNIFIED 3D MONOLITH + ALIGNED SHADER PAD -->
+          <div class="hero-3d-wrap hero-reveal">
+            <div class="concrete-slab hero-monolith-card" id="heroMonolithCard">
+              <div class="monolith-top-meta">
+                <span class="monolith-badge" id="monolithPillarBadge">01 // UI/UX ARCHITECTURE</span>
+                <button type="button" class="monolith-cycle-btn" id="monolithCycleBtn">
+                  NEXT MODEL ↻
+                </button>
+              </div>
+
+              <div class="monolith-canvas-box" id="monolithCanvasBox">
+                <canvas id="hero3dCanvas" aria-label="Interactive Drag-to-Orbit 3D Concrete Monolith"></canvas>
+                <span class="monolith-drag-tag" id="monolithShaderReadout">DRAG TO ORBIT • CONCRETE</span>
+              </div>
+
+              <div class="monolith-bottom-bar">
+                <p class="monolith-caption" id="monolithPillarCaption">
+                  HCI-DRIVEN INTERFACE SYSTEMS &amp; PRODUCT ARCHITECTURE
+                </p>
+                <div class="monolith-dots" id="monolithDots" aria-hidden="true">
+                  <span class="m-dot active"></span>
+                  <span class="m-dot"></span>
+                  <span class="m-dot"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-macropad" id="heroMacroPad" role="group" aria-label="3D Monolith Shader Pad">
+              <div class="macropad-keys">
+                <button type="button" class="macro-key active" data-shader="concrete">
+                  <span class="mk-num">01</span>
+                  <span class="mk-name">CONCRETE</span>
+                </button>
+                <button type="button" class="macro-key" data-shader="blueprint">
+                  <span class="mk-num">02</span>
+                  <span class="mk-name">BLUEPRINT</span>
+                </button>
+                <button type="button" class="macro-key" data-shader="holo">
+                  <span class="mk-num">03</span>
+                  <span class="mk-name">CRT HOLO</span>
+                </button>
+                <button type="button" class="macro-key" data-shader="overdrive">
+                  <span class="mk-num">04</span>
+                  <span class="mk-name">OVERDRIVE</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-ticker-shell" aria-hidden="true">
+        <div class="hero-ticker-track" id="heroTickerTrack">
+          <span>UI/UX ARCHITECTURE</span>
+          <span class="ticker-sep">✦</span>
+          <span>HCI &amp; QUALITY OF LIFE</span>
+          <span class="ticker-sep">✦</span>
+          <span>LARAVEL &amp; MARIADB</span>
+          <span class="ticker-sep">✦</span>
+          <span>INTERACTIVE WEBGL &amp; 2D ENGINES</span>
+          <span class="ticker-sep">✦</span>
+          <span>UNITY &amp; UNREAL ENGINE</span>
+          <span class="ticker-sep">✦</span>
+          <span>COIN-OP BROWSER ARCADE</span>
+          <span class="ticker-sep">✦</span>
+          <span>UI/UX ARCHITECTURE</span>
+          <span class="ticker-sep">✦</span>
+          <span>HCI &amp; QUALITY OF LIFE</span>
+          <span class="ticker-sep">✦</span>
+          <span>LARAVEL &amp; MARIADB</span>
+          <span class="ticker-sep">✦</span>
+          <span>INTERACTIVE WEBGL &amp; 2D ENGINES</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT
+         ========================================================= -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head-row reveal-up">
+          <h2 class="section-title" data-i18n="about_title">ABOUT</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="concrete-slab about-copy reveal-up" data-tilt-slab>
+            <div class="focus-tabs" id="aboutFocusTabs" role="tablist" aria-label="Focus areas">
+              <button type="button" class="focus-tab active" data-focus="hci" role="tab" aria-selected="true">
+                UI/UX &amp; HCI
+              </button>
+              <button type="button" class="focus-tab" data-focus="web" role="tab" aria-selected="false">
+                WEB &amp; SYSTEMS
+              </button>
+              <button type="button" class="focus-tab" data-focus="english" role="tab" aria-selected="false">
+                LANGUAGE &amp; GAMES
+              </button>
+            </div>
+
+            <div class="about-statement-block">
+              <p class="lead-text" id="aboutFocusLead">
+                ORGANIZING CONCEPTS INTO CLEAN INTERFACES BEFORE HEAVY CODE BEGINS.
+              </p>
+              <p class="body-text" id="aboutFocusBody">
+                Human-Computer Interaction focus. Minimal hierarchies, practical Quality of Life flows.
+              </p>
+            </div>
+
+            <div class="skill-pills-wrap" id="skillPillsWrap">
+              <span class="skill-pill" data-group="hci" data-magnetic>Figma</span>
+              <span class="skill-pill" data-group="hci" data-magnetic>Canva</span>
+              <span class="skill-pill" data-group="hci" data-magnetic>UI Architecture</span>
+              <span class="skill-pill" data-group="hci" data-magnetic>Prototyping</span>
+              <span class="skill-pill" data-group="web" data-magnetic>HTML / CSS / JS</span>
+              <span class="skill-pill" data-group="web" data-magnetic>Laravel &amp; PHP</span>
+              <span class="skill-pill" data-group="web" data-magnetic>WordPress</span>
+              <span class="skill-pill" data-group="web" data-magnetic>Three.js &amp; Canvas</span>
+              <span class="skill-pill" data-group="web" data-magnetic>MariaDB &amp; openGauss</span>
+              <span class="skill-pill" data-group="english" data-magnetic>Unity &amp; Unreal</span>
+              <span class="skill-pill" data-group="english" data-magnetic>English Coaching</span>
+              <span class="skill-pill" data-group="english" data-magnetic>Interview Prep</span>
+            </div>
+          </div>
+
+          <div class="about-right-stack reveal-up">
+            <div class="concrete-slab portrait-frame" data-tilt-slab>
+              <div class="missing-file-box" id="portraitBox">
+                <svg class="missing-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <rect x="6" y="8" width="36" height="32" rx="6" stroke="currentColor" stroke-width="2.5" />
+                  <circle cx="17" cy="19" r="3" fill="currentColor" />
+                  <path
+                    d="M9 35L19 25L26 32L32 26L39 35"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="missing-label">PORTRAIT PHOTO</span>
+                <span class="missing-hint" data-i18n="portrait_hint">HALF-BODY SLOT</span>
+              </div>
+            </div>
+
+            <div class="proof-micro-grid">
+              <a href="#lounge" class="concrete-slab proof-slab proof-slab--link js-scroll" data-tilt-slab>
+                <span class="proof-kicker">IN-BROWSER ARCADE</span>
+                <span class="proof-number" id="cabinetCounter" data-target="4">04</span>
+                <span class="proof-sub">PLAYABLE 2D &amp; 3D GAMES ↗</span>
+              </a>
+
+              <div class="concrete-slab proof-slab proof-slab--accent" data-tilt-slab>
+                <span class="proof-kicker">WORKFLOW</span>
+                <span class="proof-stamp">FIGMA → PROD</span>
+                <span class="proof-sub">DESIGN TO LIVE CODE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EDUCATION & TRACK (UNBOXED VERTICAL ROULETTE + ARCHIVAL PHOTO)
+         ========================================================= -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head-row reveal-up">
+          <h2 class="section-title" data-i18n="edu_title">EDUCATION &amp; TRACK</h2>
+          <div class="legend-pills">
+            <span class="legend-pill">ACADEMIC</span>
+            <span class="legend-pill legend-pill--accent" data-i18n="legend_industry">INTERNSHIP</span>
+          </div>
+        </div>
+
+        <div class="edu-split-grid reveal-up">
+          <div class="edu-slot-free">
+            <div class="edu-slot-top">
+              <span class="carousel-counter" id="eduCounter">01 / 05</span>
+              <div class="edu-slot-arrows">
+                <button type="button" class="arrow-btn" id="eduPrevBtn" aria-label="Spin reel up" data-magnetic>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 15L12 9L6 15" />
+                  </svg>
+                </button>
+                <button type="button" class="arrow-btn" id="eduNextBtn" aria-label="Spin reel down" data-magnetic>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9L12 15L18 9" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="edu-slot-viewport" id="eduStage" aria-live="polite"></div>
+          </div>
+
+          <div class="concrete-slab maps-bento-panel" id="eduMapPanel">
+            <div class="maps-bento-header">
+              <div>
+                <div class="maps-meta-row">
+                  <span class="map-kicker" id="mapCity">CENTRAL JAVA</span>
+                  <span class="map-type-badge" id="mapTypeBadge">HIGHER EDUCATION</span>
+                </div>
+                <h3 class="map-place" id="mapTitle">TELKOM UNIVERSITY PURWOKERTO</h3>
+              </div>
+              <a
+                id="mapExternalLink"
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-light btn-xs"
+                data-magnetic
+                data-i18n="open_maps"
+              >
+                MAPS ↗
+              </a>
+            </div>
+
+            <div class="maps-bento-grid maps-bento-grid--compact">
+              <div class="bento-tile bento-photo-tile" id="eduBuildingTile">
+                <div class="edu-building-visual" id="eduBuildingVisual"></div>
+                <div class="edu-photo-film-mask" aria-hidden="true"></div>
+                <div class="edu-photo-hover-meta">
+                  <span class="ephm-title" id="eduBuildingHoverTitle">TELKOM UNIVERSITY PURWOKERTO</span>
+                  <span class="ephm-sub" id="eduBuildingHoverSub">CENTRAL JAVA, INDONESIA</span>
+                </div>
+                <span class="bento-badge" id="eduBuildingCaption">ARCHIVE // 01</span>
+              </div>
+
+              <div class="bento-tile bento-roadmap">
+                <iframe id="eduMapIframe" title="Interactive Google Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
+                <span class="bento-badge" data-i18n="tile_map">PINNED MAP</span>
+              </div>
+
+              <div class="bento-tile bento-satellite">
+                <iframe id="eduSatIframe" title="Satellite Aerial View" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
+                <a id="eduPhotosLink" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" class="bento-photo-cta" data-i18n="see_photos">
+                  PHOTOS ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROJECTS (WALKTHROUGH VIDEO + ZERO-GAP TETRIS PHOTO COLLAGE)
+         ========================================================= -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head-row reveal-up">
+          <h2 class="section-title" data-i18n="projects_title">PROJECTS</h2>
+        </div>
+
+        <div class="projects-stack">
+          <article class="concrete-slab project-card project-card--flagship reveal-up" data-project="isim">
+            <div class="telkom-watermark" id="isimWatermark" aria-hidden="true">
+              <img src="assets/telkom-logo.png" alt="" />
+            </div>
+
+            <div class="project-top-bar">
+              <div>
+                <span class="tag tag--flagship">PT. TELKOM INDONESIA REG IV</span>
+                <h3 class="project-title">ISIM — INVENTORY MANAGEMENT</h3>
+              </div>
+            </div>
+
+            <div class="isim-showcase-grid">
+              <div class="isim-video-stage" id="isimVideoSlot"></div>
+              <div class="isim-tetris-collage" id="isimCollageGrid"></div>
+            </div>
+
+            <div class="project-bottom-bar">
+              <div class="project-spec-strip">
+                <span>LARAVEL &amp; PHP</span>
+                <span>MARIADB</span>
+                <span>ROLE ACCESS &amp; CAPTCHA</span>
+                <span>LIVE STOCK CHARTS</span>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-flagship btn-sm project-detail-btn"
+                data-open-project="isim"
+                data-magnetic
+                data-i18n="read_specs"
+              >
+                TECH SPECS
+              </button>
+            </div>
+          </article>
+
+          <article class="concrete-slab project-card project-card--compact reveal-up" data-project="ecommerce" data-tilt-slab>
+            <div class="project-top-bar">
+              <div>
+                <span class="tag">RETAIL WEB ARCHITECTURE</span>
+                <h3 class="project-title">APPAREL E-COMMERCE PLATFORM</h3>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-light btn-sm project-detail-btn"
+                data-open-project="ecommerce"
+                data-magnetic
+                data-i18n="read_brief"
+              >
+                DETAILS
+              </button>
+            </div>
+
+            <div class="project-spec-strip project-spec-strip--light">
+              <span>WORDPRESS + CUSTOM FRONT-END</span>
+              <span>MIDTRANS &amp; XENDIT</span>
+              <span>LIVE SHIPMENT TRACKING</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         GRITTY RAINY BACK-ALLEY ARCADE ENTRANCE (V0.7.1)
+         (POLE W/ TOILET SIGN + MISSING POSTER • STRAIGHT BROKEN ARROW
+          • HIGH YELLOWISH FLICKERING DOOR LIGHT • SUBTLE PUDDLES)
+         ========================================================= -->
+    <section id="lounge" class="section alley-section">
+      <div class="container container--wide">
+        <div class="alley-stage-slab reveal-up" id="loungeDoorStage">
+          <!-- Foreground Live Diagonal Rain Canvas -->
+          <canvas id="alleyRainCanvas" class="alley-rain-canvas" aria-hidden="true"></canvas>
+
+          <!-- Gritty Back-Alley Architecture, Left Utility Pole & Subtle Puddles -->
+          <div class="alley-bg-details" aria-hidden="true">
+            <div class="alley-wires"></div>
+            <div class="alley-perspective-corridor"></div>
+            <div class="alley-wall-grime"></div>
+
+            <!-- LEFT UTILITY POLE: TOILET SIGN + DIRTY MISSING CHILD POSTER -->
+            <div class="alley-left-pole">
+              <div class="pole-shaft"></div>
+              <div class="pole-bracket-top"></div>
+
+              <!-- Weathered Blue Toilet Sign Sticking Off the Pole -->
+              <div class="pole-toilet-sign">
+                <div class="toilet-icons">
+                  <svg viewBox="0 0 44 24" fill="currentColor" aria-hidden="true">
+                    <!-- Minimalist M/F Restroom Silhouettes -->
+                    <circle cx="11" cy="4.5" r="2.6" />
+                    <path d="M7.5 9h7v6h-1.8v7h-3.4v-7H7.5z" />
+                    <rect x="21" y="3" width="1.5" height="18" opacity="0.55" />
+                    <circle cx="32" cy="4.5" r="2.6" />
+                    <path d="M29.2 9h5.6l2 8h-2.2v5h-5.2v-5h-2.2z" />
+                  </svg>
+                </div>
+                <span class="toilet-label">TOILET</span>
+                <span class="toilet-arrow">←</span>
+              </div>
+
+              <!-- Dirty, Rain-Stained MISSING Poster Taped to Pole -->
+              <div class="pole-missing-poster">
+                <span class="poster-tape tape-t"></span>
+                <span class="poster-tape tape-b"></span>
+                <span class="poster-head">MISSING</span>
+                <div class="poster-mugshot">
+                  <span class="mug-head"></span>
+                  <span class="mug-body"></span>
+                </div>
+                <div class="poster-lines">
+                  <span></span>
+                  <span></span>
+                  <span class="short"></span>
+                </div>
+                <span class="poster-grime"></span>
+              </div>
+            </div>
+
+            <!-- Distant Weathered Wall Sign -->
+            <div class="alley-side-lightbox lb-blue"><span>OPEN</span></div>
+
+            <!-- Rust-Stained Outdoor AC Condenser -->
+            <div class="alley-ac-unit">
+              <div class="ac-fan"></div>
+              <div class="ac-vents"><span></span><span></span><span></span></div>
+            </div>
+
+            <!-- Wet Alley Ground + Subtle Water Puddles -->
+            <div class="alley-wet-ground">
+              <span class="alley-puddle puddle-1"></span>
+              <span class="alley-puddle puddle-2"></span>
+              <span class="alley-puddle puddle-3"></span>
+            </div>
+          </div>
+
+          <div class="alley-scene-grid">
+            <!-- LEFT-CENTER (SHIFTED RIGHT AWAY FROM POLE): STRAIGHT BROKEN NEON ARROW + TRASH/SEWER -->
+            <div class="alley-sign-col">
+              <button
+                type="button"
+                class="neon-arrow-sign-btn"
+                id="enterLoungeCta"
+                aria-label="Enter the Coin-Op Arcade"
+              >
+                <!-- Clean Straight Flickering Neon Arrow (No Bulbs or Dangling Wire) -->
+                <svg class="neon-arrow-svg" viewBox="0 0 640 210" fill="none" aria-hidden="true">
+                  <defs>
+                    <filter id="neonRedGlow" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="6.5" result="blur1" />
+                      <feGaussianBlur stdDeviation="15" result="blur2" />
+                      <feMerge>
+                        <feMergeNode in="blur2" />
+                        <feMergeNode in="blur1" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <path
+                    d="M24 44 H424 V14 L614 105 L424 196 V166 H24 Z"
+                    fill="rgba(7, 8, 12, 0.92)"
+                    stroke="#242934"
+                    stroke-width="14"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    class="neon-tube-outer"
+                    d="M24 44 H424 V14 L614 105 L424 196 V166 H24 Z"
+                    fill="rgba(14, 7, 13, 0.86)"
+                    stroke="#f43f5e"
+                    stroke-width="6"
+                    stroke-linejoin="round"
+                    filter="url(#neonRedGlow)"
+                  />
+
+                  <path
+                    class="neon-tube-inner"
+                    d="M38 56 H436 V34 L584 105 L436 176 V154 H134"
+                    stroke="#fda4af"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    opacity="0.86"
+                  />
+                  <path
+                    d="M120 154 H38 V56"
+                    stroke="#334155"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-dasharray="6 5"
+                  />
+                </svg>
+
+                <span class="neon-arrow-label">
+                  <small>4 CABINETS INSIDE</small>
+                  <strong>A<span class="flicker-char">R</span>CADE</strong>
+                </span>
+              </button>
+
+              <!-- Dark Gritty Props Shifted Right (Trash Can + Wet Garbage Bags + Sewer Grate) -->
+              <div class="alley-corner-props" aria-hidden="true">
+                <div class="alley-trashcan">
+                  <div class="trash-lid"></div>
+                  <div class="trash-body"><span></span><span></span><span></span></div>
+                </div>
+
+                <div class="alley-garbage-bags">
+                  <div class="trash-bag bag-large"></div>
+                  <div class="trash-bag bag-small"></div>
+                </div>
+
+                <div class="alley-sewer-grate">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: HIGH YELLOWISH DOMINANT-OFF SECURITY LIGHT + STEEL PULL DOOR -->
+            <div class="door-arch-stage">
+              <!-- Flat Light Mounted High Above Door (Zero Door Collision, Eerie Yellowish Flicker) -->
+              <div class="door-flat-light" aria-hidden="true">
+                <div class="flat-light-mount">
+                  <span class="flat-light-bar"></span>
+                </div>
+                <div class="flat-light-spill"></div>
+              </div>
+
+              <button
+                type="button"
+                class="door-frame-assembly"
+                id="loungeDoorTrigger"
+                aria-label="Pull open back-alley door and enter the Coin-Op Arcade"
+              >
+                <div class="door-floor-spill" id="loungeDoorSpill" aria-hidden="true"></div>
+
+                <div class="door-void-interior">
+                  <div class="door-void-tv-flicker"></div>
+                  <div class="door-void-lamp-glow"></div>
+                  <span class="door-void-hint">STEP INSIDE</span>
+                </div>
+
+                <div class="door-leaf" id="loungeDoorLeaf">
+                  <div class="door-leaf-edge" aria-hidden="true"></div>
+                  <div class="door-peephole" aria-hidden="true"></div>
+                  <div class="door-number-stencil">04</div>
+                  <div class="door-push-plate">
+                    <span class="door-push-label">PULL</span>
+                    <span class="door-handle-bar"></span>
+                  </div>
+                  <div class="door-kick-plate" aria-hidden="true"></div>
+                </div>
+              </button>
+
+              <span class="alley-door-hint">PULL DOOR TO ENTER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CREDENTIALS: 3D PEEKING DECK + 360° RESIDENT EVIL INSPECTOR
+         ========================================================= -->
+    <section id="credentials" class="section">
+      <div class="container">
+        <div class="section-head-row reveal-up">
+          <h2 class="section-title" data-i18n="cred_title">CREDENTIALS</h2>
+        </div>
+
+        <div class="cred-carousel-shell reveal-up">
+          <div class="cred-deck-stage" id="credDeckStage" aria-live="polite"></div>
+
+          <div class="carousel-nav-bar">
+            <button type="button" class="arrow-btn" id="prevCredBtn" aria-label="Previous credential" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18L9 12L15 6" />
+              </svg>
+            </button>
+
+            <span class="carousel-counter" id="credCounter">01 / 05</span>
+
+            <button type="button" class="arrow-btn" id="nextCredBtn" aria-label="Next credential" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18L15 12L9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="concrete-slab cred-detail-panel reveal-up" id="credDetailPanel">
+          <div class="cred-detail-top">
+            <div>
+              <p class="detail-issuer" id="detailIssuer">PT. TELKOM INDONESIA REGIONAL IV</p>
+              <h3 class="detail-title" id="detailTitle">INDUSTRIAL INTERNSHIP — WEB &amp; UI/UX</h3>
+            </div>
+            <div class="cred-detail-actions">
+              <span class="detail-meta" id="detailMeta">NETWORKING DIVISION</span>
+              <button type="button" class="btn btn-dark btn-sm" id="inspectCertBtn" data-magnetic data-i18n="inspect_cert">
+                360° INSPECT
+              </button>
+            </div>
+          </div>
+          <p class="body-text detail-desc" id="detailDesc"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FULL-SCREEN TJOC × FNAF PIZZERIA HORROR ARCADE (V0.7.1)
+       STAGE 1: DISTANT 3D FULL-BODY CABINETS • HIGH LAMPS • VISIBLE WALL & FLOOR
+       STAGE 2: CLOSE-UP CABINET • EXPOSED COIN DOOR • REAL COIN ANIMATION
+       ========================================================= -->
+  <div class="lounge-dimension-modal" id="loungeRoomModal" data-view="hall" aria-hidden="true">
+    <div class="lounge-pov-shell" id="loungePovShell" role="dialog" aria-modal="true" aria-label="Horror Coin-Op Arcade Parlor">
+      <!-- Pizzeria Grungy Back Wall + Checkered Wall Trim + Visible Checkered Floor -->
+      <div class="pov-room-walls" aria-hidden="true">
+        <div class="pizzeria-back-wall">
+          <div class="pizzeria-wall-grime"></div>
+          <div class="pizzeria-wall-trim"></div>
+          <div class="pizzeria-wainscot"></div>
+          <div class="pizzeria-baseboard"></div>
+        </div>
+        <div class="fnaf-checker-floor"></div>
+      </div>
+
+      <!-- Barely-Visible Ground Smoke / Fog & Floating Dust Motes -->
+      <canvas id="arcadeFogCanvas" class="arcade-fog-canvas" aria-hidden="true"></canvas>
+      <canvas id="loungeDustCanvas" class="pov-dust-canvas" aria-hidden="true"></canvas>
+      <div class="pov-cam-vignette" aria-hidden="true"></div>
+
+      <!-- Enlarged, Easy-to-Read Security-Cam HUD -->
+      <div class="pov-top-hud">
+        <div class="pov-hud-left">
+          <button type="button" class="lounge-ctrl-btn lounge-exit-btn" id="loungeExitBtn">
+            ← EXIT ALLEY [ESC]
+          </button>
+          <button type="button" class="lounge-ctrl-btn lounge-back-hall-btn" id="loungeBackHallBtn" hidden>
+            ← STEP BACK
+          </button>
+          <span class="pov-rec-stamp" id="povCamLabel">● CAM 04 // ARCADE HALL</span>
+        </div>
+
+        <div class="lounge-room-controls">
+          <button type="button" class="lounge-ctrl-btn" id="crtMuteBtn" aria-pressed="false">
+            ♪ SFX: ON
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 1: FURTHER-BACK TJOC CORRIDOR WITH HIGH LAMPS COVERING ENTIRE 3D CABINETS -->
+      <div class="arcade-camera-rig" id="arcadeCameraRig">
+        <div class="tjoc-corridor-row" id="tjocCorridorRow">
+          <!-- CABINET 01: ICE CYAN SPOTLIGHT -->
+          <div class="tjoc-bay lamp--cyan" data-cart="runner" role="button" tabindex="0" aria-label="Approach Cyan-Lit Arcade Machine">
+            <div class="tjoc-ceiling-lamp">
+              <span class="lamp-housing-ring"></span>
+              <span class="lamp-bulb"></span>
+              <div class="lamp-wall-halo"></div>
+              <div class="lamp-cone"></div>
+            </div>
+
+            <div class="full-arcade-cab cab-wear-1">
+              <div class="cab-top-cap"></div>
+              <div class="cab-marquee-hood">
+                <span class="cab-marquee-glow"></span>
+              </div>
+              <div class="cab-speaker-panel">
+                <span class="spk-grille"></span>
+                <span class="spk-grille"></span>
+              </div>
+              <div class="cab-screen-recess">
+                <div class="cab-hood-shadow"></div>
+                <canvas class="cab-mini-static" data-mini-static="0"></canvas>
+                <div class="cab-crt-glass"></div>
+              </div>
+              <div class="cab-control-shelf">
+                <span class="cab-stick"></span>
+                <span class="cab-btns"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="cab-lower-body">
+                <div class="cab-deck-cast-shadow"></div>
+                <div class="cab-coin-plate">
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-return-mini"></span>
+                </div>
+                <div class="cab-kickplate"></div>
+              </div>
+            </div>
+
+            <div class="cab-floor-shadow" aria-hidden="true"></div>
+            <div class="lamp-floor-pool" aria-hidden="true"></div>
+          </div>
+
+          <!-- CABINET 02: HAUNTED VIOLET SPOTLIGHT -->
+          <div class="tjoc-bay lamp--violet" data-cart="grimoire" role="button" tabindex="0" aria-label="Approach Violet-Lit Arcade Machine">
+            <div class="tjoc-ceiling-lamp">
+              <span class="lamp-housing-ring"></span>
+              <span class="lamp-bulb"></span>
+              <div class="lamp-wall-halo"></div>
+              <div class="lamp-cone"></div>
+            </div>
+
+            <div class="full-arcade-cab cab-wear-2">
+              <div class="cab-top-cap"></div>
+              <div class="cab-marquee-hood">
+                <span class="cab-marquee-glow"></span>
+              </div>
+              <div class="cab-speaker-panel">
+                <span class="spk-grille"></span>
+                <span class="spk-grille"></span>
+              </div>
+              <div class="cab-screen-recess">
+                <div class="cab-hood-shadow"></div>
+                <canvas class="cab-mini-static" data-mini-static="1"></canvas>
+                <div class="cab-crt-glass"></div>
+              </div>
+              <div class="cab-control-shelf">
+                <span class="cab-stick"></span>
+                <span class="cab-btns"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="cab-lower-body">
+                <div class="cab-deck-cast-shadow"></div>
+                <div class="cab-coin-plate">
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-return-mini"></span>
+                </div>
+                <div class="cab-kickplate"></div>
+              </div>
+            </div>
+
+            <div class="cab-floor-shadow" aria-hidden="true"></div>
+            <div class="lamp-floor-pool" aria-hidden="true"></div>
+          </div>
+
+          <!-- CABINET 03: RUST AMBER SPOTLIGHT -->
+          <div class="tjoc-bay lamp--amber" data-cart="campus" role="button" tabindex="0" aria-label="Approach Amber-Lit Arcade Machine">
+            <div class="tjoc-ceiling-lamp">
+              <span class="lamp-housing-ring"></span>
+              <span class="lamp-bulb"></span>
+              <div class="lamp-wall-halo"></div>
+              <div class="lamp-cone"></div>
+            </div>
+
+            <div class="full-arcade-cab cab-wear-3">
+              <div class="cab-top-cap"></div>
+              <div class="cab-marquee-hood">
+                <span class="cab-marquee-glow"></span>
+              </div>
+              <div class="cab-speaker-panel">
+                <span class="spk-grille"></span>
+                <span class="spk-grille"></span>
+              </div>
+              <div class="cab-screen-recess">
+                <div class="cab-hood-shadow"></div>
+                <canvas class="cab-mini-static" data-mini-static="2"></canvas>
+                <div class="cab-crt-glass"></div>
+              </div>
+              <div class="cab-control-shelf">
+                <span class="cab-stick"></span>
+                <span class="cab-btns"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="cab-lower-body">
+                <div class="cab-deck-cast-shadow"></div>
+                <div class="cab-coin-plate">
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-return-mini"></span>
+                </div>
+                <div class="cab-kickplate"></div>
+              </div>
+            </div>
+
+            <div class="cab-floor-shadow" aria-hidden="true"></div>
+            <div class="lamp-floor-pool" aria-hidden="true"></div>
+          </div>
+
+          <!-- CABINET 04: BLOOD CRIMSON SPOTLIGHT (VEIL OF THE MONOLITH) -->
+          <div class="tjoc-bay lamp--crimson" data-cart="monolith" role="button" tabindex="0" aria-label="Approach Crimson-Lit Arcade Machine">
+            <div class="tjoc-ceiling-lamp">
+              <span class="lamp-housing-ring"></span>
+              <span class="lamp-bulb"></span>
+              <div class="lamp-wall-halo"></div>
+              <div class="lamp-cone"></div>
+            </div>
+
+            <div class="full-arcade-cab cab-wear-4">
+              <div class="cab-top-cap"></div>
+              <div class="cab-marquee-hood">
+                <span class="cab-marquee-glow"></span>
+              </div>
+              <div class="cab-speaker-panel">
+                <span class="spk-grille"></span>
+                <span class="spk-grille"></span>
+              </div>
+              <div class="cab-screen-recess">
+                <div class="cab-hood-shadow"></div>
+                <canvas class="cab-mini-static" data-mini-static="3"></canvas>
+                <div class="cab-crt-glass"></div>
+              </div>
+              <div class="cab-control-shelf">
+                <span class="cab-stick"></span>
+                <span class="cab-btns"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="cab-lower-body">
+                <div class="cab-deck-cast-shadow"></div>
+                <div class="cab-coin-plate">
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-led">25¢</span>
+                  <span class="coin-return-mini"></span>
+                </div>
+                <div class="cab-kickplate"></div>
+              </div>
+            </div>
+
+            <div class="cab-floor-shadow" aria-hidden="true"></div>
+            <div class="lamp-floor-pool" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 1 BOTTOM PROMPT -->
+      <div class="hall-bottom-prompt" id="hallBottomPrompt">
+        CHOOSE A MACHINE TO APPROACH
+      </div>
+
+      <!-- STAGE 2: CLOSE-UP CABINET WITH EXPOSED LOWER BODY + REAL SQUARE COIN SLOT -->
+      <div class="cabinet-closeup-stage" id="cabinetCloseupStage" aria-hidden="true">
+        <div class="closeup-lamp-wash" id="closeupLampWash"></div>
+
+        <div class="closeup-cabinet-body" id="crtTvUnit">
+          <!-- Illuminated Top Marquee + Auto-Timezone 1980s Clock -->
+          <div class="cabinet-top-marquee" id="closeupMarquee">
+            <div class="marquee-speaker-vents" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="cabinet-brand-glow" id="closeupMarqueeTitle">GRAVITY FLIP RUNNER</span>
+
+            <div class="retro-alarm-clock" id="retroAlarmClock">
+              <button
+                type="button"
+                class="alarm-snooze-bar"
+                id="alarmSnoozeBtn"
+                title="Click: Cycle 24H / 12H / Temp • Double-click: Beep"
+              >
+                MODE
+              </button>
+              <div class="alarm-bezel">
+                <div class="alarm-led-screen">
+                  <span class="alarm-mode-dot" id="alarmModeLabel">LOC</span>
+                  <span class="alarm-digits" id="alarmDigits">00:00</span>
+                  <span class="alarm-temp" id="alarmTempVal">--°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recessed Close-Up CRT (Live Buzzing Static + Revealed Game Title) -->
+          <div class="closeup-bezel-shell">
+            <div class="zzz-crt-tube-well">
+              <div class="crt-screen-frame" id="crtPreviewFrame">
+                <canvas id="crtBroadcastCanvas" class="crt-broadcast-canvas" aria-hidden="true"></canvas>
+                <div class="crt-glass-bulge" aria-hidden="true"></div>
+                <div class="crt-scanlines" aria-hidden="true"></div>
+                <div class="crt-static-noise" id="crtStaticNoise" aria-hidden="true"></div>
+                <div class="crt-phosphor-flash" id="crtFlash" aria-hidden="true"></div>
+
+                <div class="closeup-static-overlay" id="closeupStaticOverlay">
+                  <span class="attract-kicker" id="attractSlotTag">CABINET 01</span>
+                  <h3 class="attract-title" id="attractTitle">GRAVITY FLIP RUNNER</h3>
+                  <p class="attract-desc" id="attractDesc"></p>
+                  <div class="attract-meta" id="attractMeta"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Physical Slanted Arcade Control Pad & Joystick -->
+          <div class="arcade-slanted-deck" aria-hidden="true">
+            <div class="cab-joystick-rig">
+              <div class="cab-joy-gate"></div>
+              <div class="cab-joy-shaft"></div>
+              <div class="cab-joy-ball" id="closeupJoyBall"></div>
+            </div>
+
+            <div class="cab-six-buttons">
+              <span class="abtn abtn-r"></span>
+              <span class="abtn abtn-y"></span>
+              <span class="abtn abtn-b"></span>
+              <span class="abtn abtn-g"></span>
+              <span class="abtn abtn-w"></span>
+              <span class="abtn abtn-r"></span>
+            </div>
+
+            <div class="cab-p1-start"><span>1P</span></div>
+          </div>
+
+          <!-- EXPOSED LOWER CABINET FRONT + REAL SQUARE COIN-MECH SLOT + CLEAR ARROW -->
+          <div class="closeup-lower-cab">
+            <div class="closeup-deck-shadow" aria-hidden="true"></div>
+
+            <div class="coin-door-bay">
+              <!-- Clear Glowing Arrow Callout Pointing Directly at Coin Slot -->
+              <div class="coin-arrow-guide" id="coinArrowGuide" aria-hidden="true">
+                <span class="cag-kicker">CLICK TO PLAY</span>
+                <strong class="cag-main">INSERT COIN</strong>
+                <span class="cag-arrows">
+                  <i>›</i><i>›</i><i>›</i>
+                </span>
+              </div>
+
+              <!-- Authentic Square Steel Arcade Coin Mechanism (No Tape!) -->
+              <button
+                type="button"
+                class="real-coin-mech"
+                id="crtDeckSlot"
+                aria-label="Insert coin into arcade slot to start game"
+              >
+                <span class="mech-rivet rv-tl" aria-hidden="true"></span>
+                <span class="mech-rivet rv-tr" aria-hidden="true"></span>
+                <span class="mech-rivet rv-bl" aria-hidden="true"></span>
+                <span class="mech-rivet rv-br" aria-hidden="true"></span>
+
+                <!-- Top Row: Glowing 25¢ Push-to-Reject Button + Vertical Coin Entry Slit -->
+                <div class="mech-top-row">
+                  <div class="mech-quarter-btn" id="mechQuarterBtn">
+                    <strong>25¢</strong>
+                    <span>PUSH</span>
+                  </div>
+
+                  <div class="mech-slit-housing" id="mechSlitHousing">
+                    <span class="mech-slit-opening"></span>
+                    <span class="mech-slit-flash" id="mechSlitFlash"></span>
+                  </div>
+                </div>
+
+                <!-- Animated Metallic Brass Token That Slides Edge-First Into the Slit -->
+                <div class="inserting-coin-token" id="insertingCoin" aria-hidden="true">
+                  <span>★</span>
+                </div>
+
+                <!-- Bottom Row: Recessed Coin Return Chute + Keyhole -->
+                <div class="mech-bottom-row" aria-hidden="true">
+                  <span class="mech-return-pocket">RETURN</span>
+                  <span class="mech-lock-cyl"></span>
+                </div>
+              </button>
+
+              <!-- Right Status & Credit Telemetry -->
+              <div class="coin-door-telemetry">
+                <span class="vcr-status-mini" id="crtStatusText">STATIC // READY</span>
+                <span class="coin-credit-label" id="closeupCreditLabel">CREDIT 00</span>
+                <span class="coin-hint-mini" id="vcrPlayPrompt">1 TOKEN = PLAY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       ZENLESS ZONE ZERO STYLE CRT STATIC & TUBE-SUCTION OVERLAY
+       ========================================================= -->
+  <div class="crt-zzz-warp" id="crtZzzWarp" aria-hidden="true">
+    <canvas id="zzzStaticCanvas"></canvas>
+    <div class="zzz-vignette"></div>
+    <div class="zzz-scanlines"></div>
+    <div class="zzz-hud">
+      <span class="zzz-kicker" id="zzzStatusText">COIN ACCEPTED // CH-01</span>
+      <strong class="zzz-main" id="zzzSubText">BOOTING ROM...</strong>
+      <div class="zzz-load-bar"><span id="zzzBarFill"></span></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       RESIDENT EVIL STYLE 360° 3D CERTIFICATE INSPECTOR MODAL
+       ========================================================= -->
+  <div class="cert-inspector-backdrop" id="certInspectorModal" aria-hidden="true">
+    <div class="cert-inspector-shell" role="dialog" aria-modal="true" aria-label="3D Certificate Inspector">
+      <canvas id="cert3dCanvas" aria-label="Interactive 360-degree 3D Certificate Viewer"></canvas>
+
+      <div class="cert-hud-top">
+        <div class="cert-hud-info">
+          <span class="cert-hud-kicker" id="certInspectIssuer">HUAWEI ICT ACADEMY</span>
+          <h3 class="cert-hud-title" id="certInspectTitle">HCIE-OPENGAUSS V1.0 COURSE</h3>
+          <span class="cert-hud-meta" id="certInspectMeta">ISSUED 2026-04-07</span>
+          <p class="cert-hud-desc" id="certInspectDesc"></p>
+        </div>
+
+        <button type="button" class="cert-hud-close" id="certInspectCloseBtn" aria-label="Close inspector">
+          CLOSE [ESC]
+        </button>
+      </div>
+
+      <div class="cert-hud-bottom">
+        <span class="cert-hud-controls">
+          <strong>DRAG:</strong> ROTATE 360° &nbsp;•&nbsp; <strong>SCROLL:</strong> ZOOM
+        </span>
+        <div class="cert-hud-btns">
+          <button type="button" class="touch-btn" id="certZoomOutBtn">ZOOM −</button>
+          <button type="button" class="touch-btn" id="certResetViewBtn">RESET</button>
+          <button type="button" class="touch-btn" id="certZoomInBtn">ZOOM +</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       RESIDENT EVIL STYLE 360° 3D ALLEY CAT PETTING INSPECTOR
+       ========================================================= -->
+  <div class="cert-inspector-backdrop" id="catInspectorModal" aria-hidden="true">
+    <div class="cert-inspector-shell" role="dialog" aria-modal="true" aria-label="3D Alley Cat Inspector">
+      <canvas id="cat3dCanvas" aria-label="Interactive 360-degree 3D Alley Cat"></canvas>
+
+      <div class="cert-hud-top">
+        <div class="cert-hud-info">
+          <span class="cert-hud-kicker">SPECIMEN 04 // ROAMING COMPANION</span>
+          <h3 class="cert-hud-title">MIONG — THE ALLEY CAT</h3>
+          <span class="cert-hud-meta" id="catReactionBadge">MOOD: CURIOUS</span>
+          <p class="cert-hud-desc" id="catInspectStatus">
+            Drag to rotate 360°. Tap its head to pet, tap its belly at your own risk, or tap its paws for a high-five.
+          </p>
+        </div>
+
+        <button type="button" class="cert-hud-close" id="catInspectCloseBtn" aria-label="Close cat inspector">
+          PUT DOWN [ESC]
+        </button>
+      </div>
+
+      <div class="cert-hud-bottom">
+        <span class="cert-hud-controls">
+          <strong>DRAG:</strong> ROTATE 360° &nbsp;•&nbsp; <strong>TAP HEAD / BELLY / PAWS:</strong> INTERACT
+        </span>
+        <div class="cert-hud-btns">
+          <button type="button" class="touch-btn" id="catResetViewBtn">RESET ANGLE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       LARGE-SCREEN CRT FULL-FOCUS ARCADE THEATER (95vw x 93vh)
+       ========================================================= -->
+  <div class="crt-theater-backdrop" id="crtTheater" aria-hidden="true">
+    <div class="crt-theater-shell" id="crtTheaterShell" role="dialog" aria-modal="true" aria-label="CRT Arcade Theater">
+      <div class="crt-theater-bar">
+        <div class="crt-theater-title-wrap">
+          <span class="crt-led crt-led--active"></span>
+          <span class="crt-theater-cart-tag" id="theaterCartTag">CABINET 01</span>
+          <strong class="crt-theater-title" id="theaterTitle">GRAVITY FLIP RUNNER</strong>
+        </div>
+
+        <div class="crt-theater-actions">
+          <button type="button" class="btn btn-light btn-xs theater-btn" id="theaterMuteBtn">SFX: ON</button>
+          <button type="button" class="btn btn-dark btn-xs theater-btn theater-eject-btn" id="theaterEjectBtn">
+            ⏏ EXIT GAME
+          </button>
+        </div>
+      </div>
+
+      <div class="crt-theater-screen" id="crtTheaterScreen">
+        <div class="crt-scanlines crt-scanlines--subtle" aria-hidden="true"></div>
+        <div class="crt-game-mount" id="crtGameMount"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PROJECT TECH SPECS MODAL
+       ========================================================= -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="modal-drawer" id="modalDrawer" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-top">
+        <div class="modal-badges">
+          <span class="tag" id="modalTag">PROJECT SPECS</span>
+          <span class="tag tag--stamp" id="modalStamp" hidden>VERIFIED</span>
+        </div>
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close modal" data-magnetic>
+          CLOSE
+        </button>
+      </div>
+
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="body-text modal-body" id="modalBody"></p>
+
+      <div class="modal-media-section" id="modalMediaSection" hidden>
+        <div class="modal-media-tabs" id="modalMediaTabs" role="tablist"></div>
+        <div class="modal-media-stage" id="modalMediaStage"></div>
+      </div>
+
+      <div class="modal-arch-strip" id="modalArchStrip" hidden></div>
+      <div class="modal-spec-grid" id="modalSpecGrid"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       RESTORED V0.5 3-COLUMN FOOTER (CLEAN — NO SUBTITLE UNDER NAME)
+       ========================================================= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-head">
+        <h2 class="footer-name">FAUZA KAIZAKU SETIAWAN</h2>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-heading" data-i18n="footer_nav">NAVIGATION</h3>
+          <ul class="footer-list">
+            <li><a href="#about" class="js-scroll" data-i18n="nav_about">ABOUT</a></li>
+            <li><a href="#education" class="js-scroll" data-i18n="nav_education">EDUCATION</a></li>
+            <li><a href="#projects" class="js-scroll" data-i18n="nav_projects">PROJECTS</a></li>
+            <li><a href="#lounge" class="js-scroll" data-i18n="nav_lounge">ARCADE</a></li>
+            <li><a href="#credentials" class="js-scroll" data-i18n="nav_credentials">CREDENTIALS</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading" data-i18n="footer_contact">DIRECT CONTACT</h3>
+          <ul class="contact-icon-list">
+            <li>
+              <button type="button" class="contact-row-btn" id="copyOutlookBtn" data-copy="">
+                <span class="contact-icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <path d="M22 7l-10 6L2 7" />
+                  </svg>
+                </span>
+                <span class="contact-text-wrap">
+                  <span class="contact-platform">OUTLOOK</span>
+                  <span class="contact-value" id="emailPrimaryText">fauzakaizakusetiawan@student.telkomuniversity.ac.id</span>
+                </span>
+                <span class="copied-pill" aria-live="polite">COPIED</span>
+              </button>
+            </li>
+
+            <li>
+              <button type="button" class="contact-row-btn" id="copyGmailBtn" data-copy="">
+                <span class="contact-icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                </span>
+                <span class="contact-text-wrap">
+                  <span class="contact-platform">GMAIL</span>
+                  <span class="contact-value" id="emailSecondaryText">kaizaku.telkomuniv@gmail.com</span>
+                </span>
+                <span class="copied-pill" aria-live="polite">COPIED</span>
+              </button>
+            </li>
+
+            <li>
+              <a id="whatsappLink" href="https://wa.me/6280000000000" target="_blank" rel="noopener noreferrer" class="contact-row-btn">
+                <span class="contact-icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  </svg>
+                </span>
+                <span class="contact-text-wrap">
+                  <span class="contact-platform">WHATSAPP</span>
+                  <span class="contact-value" id="whatsappText" data-i18n="wa_cta">DIRECT MESSAGE ↗</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading" data-i18n="footer_socials">SOCIALS</h3>
+          <div class="social-icon-row">
+            <a id="githubLink" href="https://github.com/kaimiongmiong012" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.38 6.84 9.74.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.95-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.27 10.27 0 0 0 22 12.26C22 6.58 17.52 2 12 2z" />
+              </svg>
+            </a>
+
+            <a id="linkedinLink" href="https://www.linkedin.com/in/fauza-kaizaku-439338327" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+            </a>
+
+            <a id="instagramLink" href="https://www.instagram.com/kaieaych" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>KAI. PORTFOLIO V0.7</span>
+        <span>&copy; 2026 FAUZA KAIZAKU SETIAWAN</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LARGER SCREEN-ROAMING INTERACTIVE ALLEY CAT (84×84) -->
+  <canvas
+    id="roamingCatCanvas"
+    class="roaming-cat-canvas"
+    width="84"
+    height="84"
+    title="Click to inspect & pet Miong in 3D!"
+  ></canvas>
+
+  <!-- GSAP Motion Engine + Three.js WebGL 3D Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Modular V0.7.1 Scripts -->
+  <script src="data.js"></script>
+  <script src="grimoire-data.js"></script>
+  <script src="game-runner.js"></script>
+  <script src="game-grimoire.js"></script>
+  <script src="game-campus.js"></script>
+  <script src="game-monolith.js"></script>
+  <script src="crt-console.js"></script>
+  <script src="cat-pet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
